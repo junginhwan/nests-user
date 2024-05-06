@@ -3,8 +3,6 @@ import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import emailConfig from './config/emailConfig';
 
-console.log(`${__dirname}/config/env/.${process.env.NODE_ENV}.env`);
-
 @Module({
   imports: [UsersModule,
   ConfigModule.forRoot({
