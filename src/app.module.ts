@@ -1,9 +1,18 @@
 import { Module } from '@nestjs/common';
-import { UsersController } from './users/users.controller';
+import { UsersModule } from './users/users.module';
+import { ConfigModule } from '@nestjs/config';
+import emailConfig from './config/emailConfig';
+
+console.log(`${__dirname}/config/env/.${process.env.NODE_ENV}.env`);
 
 @Module({
-  imports: [],
-  controllers: [UsersController],
+  imports: [UsersModule,
+  ConfigModule.forRoot({
+    envFilePath: [`${__dirname}/config/env/.${process.env.NODE_ENV}.env`],
+    load: [emailConfig],
+    isGlobal: true,
+  })],
+  controllers: [],
   providers: [],
 })
 export class AppModule {}
